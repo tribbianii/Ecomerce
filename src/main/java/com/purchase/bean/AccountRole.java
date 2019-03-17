@@ -14,14 +14,14 @@ public class AccountRole {
 private int id;	
 
 @Column(name="account_role_name")
-private int name;
+private String name;
 
 public AccountRole() {
 }
 
 
 
-public AccountRole(int name) {
+public AccountRole(String name) {
 	this();
 	this.name = name;
 }
@@ -36,12 +36,25 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public int getName() {
+
+
+
+
+public String getName() {
 	return name;
 }
 
-public void setName(int name) {
+
+
+public void setName(String name) {
 	this.name = name;
+}
+
+
+
+@Override
+public String toString() {
+	return "AccountRole [id=" + id + ", name=" + name + "]";
 }
 
 

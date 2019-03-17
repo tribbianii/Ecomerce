@@ -4,26 +4,31 @@
     xmlns:context="http://www.springframework.org/schema/context"  
     xmlns:tx="http://www.springframework.org/schema/tx"  
     xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">  
+
+    <context:annotation-config></context:annotation-config>  
+    <context:component-scan base-package="com.purchase"></context:component-scan>  
         
-<context:property-placeholder location="classpath:jdbc.properties"  />
+
 
 <!-- datasource -->
 <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-	 <property name="driverClass" value="${jdbc.driverClass}"></property>  
-        <property name="jdbcUrl" value="${jdbc.url}"></property>  
-        <property name="user" value="${jdbc.user}"></property>  
-        <property name="password" value="${jdbc.password}"></property>  
-        <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />  
+	 <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>  
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/purchase_system"></property>  
+        <property name="user" value="root"></property>  
+        <property name="password" value="1234"></property>  
+   <!-- <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />  
         <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />  
         <property name="maxIdleTime" value="${jdbc.maxIdleTime}" />  
         <property name="initialPoolSize" value="${jdbc.initialPoolSize}" />  
         <property name="minPoolSize" value="${jdbc.minPoolSize}" />  
         <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />  
-        <property name="acquireIncrement" value="${jdbc.acquireIncrement}" />  
+        <property name="acquireIncrement" value="${jdbc.acquireIncrement}" />    -->    
 </bean>
 
 <!-- session factory -->        
@@ -39,11 +44,35 @@
  		</props>
  	</property>
  </bean>       
-        
-        
-        
-        
-        
-        
-        
+      
+<!-- transaction manager -->        
+<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>  
+
+<tx:annotation-driven  transaction-manager="transactionManager" />      
+ 
+ <!-- thymeleaf conf       -->  
+<bean id="templateResolver"
+       class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+  <property name="prefix" value="/WEB-INF/templates/" />
+  <property name="suffix" value=".html" />
+  <property name="templateMode" value="HTML" />
+  <property name="cacheable" value="false"></property>
+</bean>
+    
+<bean id="templateEngine"
+      class="org.thymeleaf.spring5.SpringTemplateEngine">
+  <property name="templateResolver" ref="templateResolver" />
+</bean>
+
+ <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+  <property name="templateEngine" ref="templateEngine" />
+</bean>
+
+<mvc:default-servlet-handler/>
+<mvc:annotation-driven></mvc:annotation-driven>
+ 
+
+
 </beans>

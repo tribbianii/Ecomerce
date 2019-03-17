@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="accounts")
@@ -19,12 +20,19 @@ public class Account {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;	
 
-@Column(name="account_name")
-private String name;
+@Column(name="account_firstname")
+private String firstName;
 
-@Column(name="account_logname")
-private String logname;
-	
+@Column(name="account_midtname")
+private String midName;
+
+@Column(name="account_lasttname")
+private String lastName;
+
+
+@Transient
+private String fullName;
+
 @Column(name="account_password")
 private String password;
 
@@ -32,56 +40,12 @@ private String password;
 @JoinColumn(name="account_role")
 private AccountRole accountRole;
 
+@Column(name="account_state")
+private int state;
+
 public Account() {
 }
 
-public Account(String name, String logname, String password, AccountRole accountRole) {
-	this();
-	this.name = name;
-	this.logname = logname;
-	this.password = password;
-	this.accountRole = accountRole;
-}
-
-public int getId() {
-	return id;
-}
-
-public void setId(int id) {
-	this.id = id;
-}
-
-public String getName() {
-	return name;
-}
-
-public void setName(String name) {
-	this.name = name;
-}
-
-public String getLogname() {
-	return logname;
-}
-
-public void setLogname(String logname) {
-	this.logname = logname;
-}
-
-public String getPassword() {
-	return password;
-}
-
-public void setPassword(String password) {
-	this.password = password;
-}
-
-public AccountRole getAccountRole() {
-	return accountRole;
-}
-
-public void setAccountRole(AccountRole accountRole) {
-	this.accountRole = accountRole;
-} 
 
 
 }

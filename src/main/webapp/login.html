@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Log in</title>
+<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="css/image.min.css">
+<link rel="stylesheet" type="text/css" href="css/icon.min.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+  
+</head>
+<body>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui blue image header">
+      <img src="images/goodwill-logo.png" class="image">
+      <div class="content">
+        Welcome
+      </div>
+    </h2>
+      <div id="invalidated_msg" class="ui error message hidden">
+    <div class="header"></div>
+    
+  </div>
+    <div class="ui  form" >
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input data-name="login_email" type="text" name="email" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input data-name="login_password" type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <div id="login_but" class="ui fluid large blue  button">Login</div>
+        
+        <div class="field"></div>
+        
+        <a href="javascript:void(0);" class="sub header" style="margin-top: 1%" id="signupLink">Signup</a>
+              <div class="ui error message">
+					<ul class="list"></ul>
+      		  </div>
+        
+      </div>
+
+
+	
+    </div>
+    
+   	<div class="ui accordion">
+	  <div class="title ">
+	    <i class="dropdown icon"></i>
+	    <a>Forget password?</a>
+	  </div>
+	      <div class="content ">
+				<div class="ui fluid large action input">
+	  			<input data-name="email"  type="text" placeholder="Email">
+	  			<button id="sendPassword" class="ui blue button">Send Password</button>
+				</div>
+	
+	
+				
+	      </div>
+	     <!-- 	<div class="ui  negative message">
+				<div class="header">
+	    			The Email is not existing.
+	  			</div>
+	  			</div> --> 
+	 <div class="ui message hidden" id="msgDiv">
+	  
+	  <div class="header" id="respMsg">
+	   	
+	  </div>
+	  
+	</div>
+
+  </div>
+
+  </div>
+</div>
+
+
+<!-- -----------------------------sign up -------------------------->
+<div class="ui tiny modal" id="signupModel">
+ 
+</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/semantic.min.js"></script>
+<script type="text/javascript" src="js/pub.js"></script>
+<script type="text/javascript" src="login.js"></script>
+</html>

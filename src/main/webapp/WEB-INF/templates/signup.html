@@ -1,0 +1,52 @@
+
+ <i class="close icon"></i>
+  <div class="header">
+    Sign up
+  </div>
+  <div class="content">
+	<form class="ui form" id="signinForm">
+	  <div class="required field">
+	  	<label>Name:</label>
+	  	<div class="three fields">
+	  		<div class="field">
+	  			<input type="text" name="firstName" placeholder="First Name">
+	  		</div>
+	  		<div class="field">
+	  			<input type="text" name="midName" placeholder="Mid Name">
+	  		</div>	  		
+	  		<div class="field">
+	  			<input type="text" name="firstName" placeholder="Last Name">
+	  		</div>	  		
+	  	</div>
+	  	
+	  </div>
+	
+	
+	
+	  <div class="required field">
+	    <label>Email:</label>
+	    <input type="text" name="email" placeholder="Email">
+	  </div>
+	  <div class="required field">
+	    <label>Password:</label>
+	    <input type="text" name="password" placeholder="Last Name">
+	  </div>
+	  <div class="required field">
+	  	<label>Role:</label>
+	  	<div class="ui selection dropdown">
+		  <input type="hidden" name="role">
+		  <i class="dropdown icon"></i>
+		  <div class="default text">Role</div>
+		  <div class="menu" >
+		    <div class="item" th:each="role : ${roles}" th:data-value="${role.id}" th:text="${role.name}"></div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="required field">
+	    <label id="codeLabel">Code:<i class="exclamation circle orange icon"  data-content="Please request sign up code from administrator" data-position="top left"></i></label>
+	    <input type="text" name="code" placeholder="Code">
+	  </div>
+		<div id="signupBut" class="ui fluid large blue  button">Sign up</div>
+		<div class="ui error message"></div>
+	</form>
+	</div>
